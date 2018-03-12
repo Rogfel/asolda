@@ -1,0 +1,28 @@
+{% extends 'imagens/default.html' %}
+{% block head_css_page %}
+<style type="text/css">
+    .page-bar, body {
+        background-color: #fff !important;
+    }
+</style>
+{% endblock head_css_page %}
+{% block user-log %}
+{% endblock user-log %}
+{% block text_h3 %}
+    {% endblock text_h3 %}
+    {% block path_site %}
+    {% endblock path_site %}
+
+{% block sidebar %}
+{% endblock sidebar %}
+{% block content %}
+<div class="center">    
+<h2>Login</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+    {{request.user.email}}
+  </form>
+</div>
+{% endblock content %}

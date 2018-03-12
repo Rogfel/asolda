@@ -1,0 +1,93 @@
+{% extends 'imagens/default.html' %}
+{% block title %}Projects{% endblock title %}
+
+    {% block text_h1 %}
+                Projects <!-- <small>reports & statistics</small> -->
+    {% endblock text_h1 %}
+    {% block path_site %}
+        <!-- <li>
+            <i class="fa fa-home"></i>
+             <a href="{% url 'project-list' %}">Projects</a>
+            <i class="fa fa-angle-right"></i>
+        </li><li>
+            <a href="#">Dashboard</a>
+        </li> -->
+    {% endblock path_site %}
+{% block content %}
+<div class="portlet box grey-cascade">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-cogs"></i>Projects
+                            </div>
+                            <div class="tools">
+                                <div class="btn-group">                                    
+                                <a class="btn green" href="{% url "project-new" %}">Add Project
+                                <i class="fa fa-plus"></i>
+                                </a>
+                                </div>
+                               <!--  <a href="javascript:;" class="collapse" data-original-title="" title="">
+                               </a>
+                               <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title="">
+                               </a>
+                               <a href="javascript:;" class="reload" data-original-title="" title="">
+                               </a>
+                               <a href="javascript:;" class="remove" data-original-title="" title="">
+                               </a> -->
+                            </div>
+                        </div>
+                        <div class="portlet-body flip-scroll">
+                            <table class="table table-bordered table-striped table-condensed flip-content">
+                            <thead class="flip-content">
+                            <tr>
+                                <th width="20%">
+                                     Name
+                                </th>
+                                <th>
+                                     Description
+                                </th>
+                                <th class="numeric">
+                                     Pieces
+                                </th>
+                                <th class="numeric">
+                                     Start date
+                                </th>
+                                <th >
+                                     Actions
+                                </th>                                
+                            </tr>
+                            </thead>
+                            <tbody>
+                         {% for project in projects %}       
+                            <tr>
+                                <td>
+                                     {{ project.name }}
+                                </td>
+                                <td>
+                                     {{ project.description }}
+                                </td>
+                                <td class="numeric">
+                                    {{ project.image_set.all|length }}
+                                </td>
+                                <td class="numeric">
+                                     {{ project.date_ini }}
+                                </td>
+                                <td>
+                                     <a class="btn green" href="{% url "project-detail" project.slug %}">Detail</a> 
+                                    <a class="btn green" href="{% url "project-edit" project.slug %}">
+                                        <i class="fa fa-pencil"></i>
+                                    Edit</a> 
+                                    <a class="btn red" href="{% url "project-delete" project.slug %}">
+                                        <i class="fa fa-trash-o"></i>
+                                        delete</a>
+                                    <a class="btn green" href="{% url "image-new" project.slug %}">
+                                        <i class="fa fa-plus"></i>
+                                        Add imagen</a> 
+                                </td>                               
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+{% endblock content %}

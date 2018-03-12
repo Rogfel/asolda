@@ -1,0 +1,102 @@
+{% extends 'imagens/default.html' %}
+{% block title %}Project details{% endblock title %}
+
+{% block text_h1 %}
+                {{ project.name }}
+    {% endblock text_h1 %}
+    {% block path_site %}
+         <li>
+            <i class="fa fa-home"></i>
+             <a href="{% url 'project-list' %}">Projects</a>
+            <i class="fa fa-angle-right"></i>
+        </li><li>
+            <a href="#">{{ project.name }}</a>
+        </li> 
+    {% endblock path_site %}
+
+{% block content %}
+
+<p>Start date: <i>{{ project.date_ini }}</i></p>
+<p>description: <i>{{ project.description }}</i></p>
+<!-- <p>
+    <a href="{% url "project-list" %}">Regresar</a>
+</p> -->
+        <div class="portlet box grey-cascade">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-cogs"></i>Welding-bead image
+                            </div>
+                            <div class="tools">
+                                <div class="btn-group">                                    
+                                <a class="btn green" href="{% url "image-new" project.slug %}">Add image
+                                <i class="fa fa-plus"></i>
+                                </a>
+                                </div>
+                               <!--  <a href="javascript:;" class="collapse" data-original-title="" title="">
+                               </a>
+                               <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title="">
+                               </a>
+                               <a href="javascript:;" class="reload" data-original-title="" title="">
+                               </a>
+                               <a href="javascript:;" class="remove" data-original-title="" title="">
+                               </a> -->
+                            </div>
+                        </div>
+                        <div class="portlet-body flip-scroll">
+                            <table class="table table-bordered table-striped table-condensed flip-content">
+                            <thead class="flip-content">
+                            <tr>
+                                <th width="20%">
+                                     Name
+                                </th>
+                                <th class="numeric">
+                                     Upload date
+                                </th>
+                                <th class="numeric">
+                                     State
+                                </th>
+                                <th >
+                                     Actions
+                                </th>                                
+                            </tr>
+                            </thead>
+                            <tbody>
+                         {% for img in project.image_set.all %}       
+                            <tr>
+                                <td>
+                                     {{ img.name }}
+                                </td>
+                                <td class="numeric">
+                                     {{ img.date_upload }}
+                                </td>
+                                <td class="numeric">
+                                     {% if img.phase == 3.0 %}
+                                        Values detection
+                                      {% elif img.phase == 2.0 %}
+                                        Edge detection
+                                      {% elif img.phase == 1.0 %}
+                                        Coord detection
+                                      {% else %}
+                                        Start
+                                     {% endif %} 
+                                </td>  
+                                <td>
+                                     <!-- <a class="btn green" href="{% url "image-detail" project.slug img.slug %}">Detail</a>  -->
+                                    <a class="btn green" href="{% url "image-edit" project.slug img.slug %}">
+                                        <i class="fa fa-pencil"></i>
+                                    Edit</a> 
+                                    <a class="btn red" href="{% url "image-delete" project.slug img.slug %}">
+                                        <i class="fa fa-trash-o"></i>
+                                        delete</a>
+                                    <a class="btn green" href="{% url "image-analisys" project.slug img.slug %}">
+                                        <i class="fa fa-gear"></i>
+                                        Analisys</a> 
+                                </td>                               
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+{% endblock content %}

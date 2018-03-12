@@ -1,0 +1,23 @@
+{% extends 'imagens/default.html' %}
+{% block title %}Project delete{% endblock title %}
+{% block text_h1 %}
+                {{ object.name }}
+    {% endblock text_h1 %}
+    {% block path_site %}
+        <li>
+            <i class="fa fa-home"></i>
+             <a href="{% url 'project-list' %}">Projects</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+         <li>
+            <a href="{% url "project-detail" object.slug %}">{{object.name}}</a>
+        </li>
+    {% endblock path_site %}
+{% block content %}
+
+<form method="post">{% csrf_token %}
+    ¿Do you want really delete "{{ object.name }}"?
+    <input class="btn red" type="submit" value="Submit" />
+</form>
+
+{% endblock content %}

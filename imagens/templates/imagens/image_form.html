@@ -1,0 +1,68 @@
+{% extends 'imagens/default.html' %}
+{% block title %}Image form{% endblock title %}
+{% block text_h1 %}
+                {{ image.name }}
+    {% endblock text_h1 %}
+    {% block path_site %}
+       
+    {% endblock path_site %}
+{% block content %}
+
+<div class="portlet box blue">
+									<div class="portlet-title">
+										<div class="caption">
+											<i class="fa fa-gift"></i>Welding-bead image form
+										</div>
+										<!-- <div class="tools">
+											<a href="javascript:;" class="collapse" data-original-title="" title="">
+											</a>
+											<a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title="">
+											</a>
+											<a href="javascript:;" class="reload" data-original-title="" title="">
+											</a>
+											<a href="javascript:;" class="remove" data-original-title="" title="">
+											</a>
+										</div> -->
+									</div>
+									<div class="portlet-body form">
+										<!-- BEGIN FORM-->
+										{% load mytags %}
+										<form method="post" enctype="multipart/form-data" class="form-horizontal form-row-seperated">
+											{% csrf_token %}
+											<div class="form-body">
+												<div class="form-group">
+													<label class="control-label col-md-3">Name
+														<span class="required" aria-required="true">
+														* </span>
+													</label>
+													<div class="col-md-9">
+														{{ form.name|addcss:"form-control" }}
+														<!-- <input type="text" placeholder="Image name" data-required="1" class="form-control"> -->
+														<span class="help-block">
+														Image name</span>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-md-3">Upload</label>
+													<div class="col-md-9">
+														{{ form.img|addcss:"form-control" }}
+														<!-- <input type="textarea" placeholder="Image description" class="form-control"> -->
+														<span class="help-block">
+														Image upload </span>
+													</div>
+												</div>
+											</div>	
+											<div class="form-actions">
+												<div class="row">
+													<div class="col-md-offset-3 col-md-9">
+														<button type="submit" class="btn green"><i class="fa fa-pencil"></i> Submit</button>
+														<button type="button" class="btn default">Cancel</button>
+													</div>
+												</div>
+											</div>
+										</form>
+										<!-- END FORM-->
+									</div>
+								</div>
+
+{% endblock content %}
